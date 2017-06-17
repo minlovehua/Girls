@@ -18,6 +18,11 @@ public class Results {
     public String used;
     public String who;
 
+    public Results(String desc, String url) {
+        this.desc = desc;
+        this.url = url;
+    }
+
     public String get_id() {
         return _id;
     }
@@ -65,7 +70,6 @@ public class Results {
     public void setType(String type) {
         this.type = type;
     }
-
 
 
     public String getUsed() {
