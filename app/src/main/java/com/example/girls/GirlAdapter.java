@@ -1,6 +1,7 @@
 package com.example.girls;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -20,7 +21,6 @@ import java.util.List;
 
 public class GirlAdapter extends RecyclerView.Adapter<GirlAdapter.ViewHolder> {
     private static final String TAG = "GirlAdapter";
-    
     private Context mContext;
     private List<Results> mResultList;
 
@@ -67,16 +67,66 @@ public class GirlAdapter extends RecyclerView.Adapter<GirlAdapter.ViewHolder> {
          * 参数三：默认false
          */
         View view= LayoutInflater.from(mContext).inflate(R.layout.girl_item,parent,false);
+
+
+     /*   //点击放大步骤3
+       //cannot call this method in a scroll callback
+
+        final ViewHolder holder = new ViewHolder(view);
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               int position=holder.getAdapterPosition();
+                Results results=mResultList.get(position);
+                Log.d(TAG, "onClick: "+position);
+                Intent intent=new Intent(mContext,GirlActivity.class);
+                intent.putExtra("abc",results.getUrl());
+                mContext.startActivity(intent);
+            }
+        });*/
+
+
         return new ViewHolder(view);
     }
 
 
 
     @Override//当每个子项被滚到屏幕内时调用，position是每张图片的位置
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         Results results = mResultList.get(position);//获取当前项的Results实例
         holder.description.setText(results.getDesc());
         Glide.with(mContext).load(results.getUrl()).into(holder.resultImage);
+
+
+
+
+
+
+
+
+        //点击放大步骤3
+
+
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Results results=mResultList.get(position);
+
+                Log.d(TAG, "当前的position是 "+position);
+                Log.d(TAG, "这个URL是ddd  "+results.getUrl());
+                Intent intent=new Intent(mContext,GirlActivity.class);
+                intent.putExtra("abc",results.getUrl());
+                mContext.startActivity(intent);
+            }
+        });
+
+
+
+
+
+
+
+
 
     }
 
@@ -85,3 +135,8 @@ public class GirlAdapter extends RecyclerView.Adapter<GirlAdapter.ViewHolder> {
         return mResultList.size();
     }
 }
+
+
+
+
+

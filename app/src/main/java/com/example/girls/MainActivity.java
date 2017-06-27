@@ -1,32 +1,21 @@
 package com.example.girls;
 
-import android.app.Dialog;
+
 import android.os.Bundle;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.ImageView;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import android.os.Handler;
-
 import okhttp3.Call;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import okhttp3.Response;
-
-import static com.example.girls.R.attr.layoutManager;
 import static com.example.girls.R.id.recycler_view;
-
 public class MainActivity extends AppCompatActivity {
 
     String url;
@@ -35,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     private Results[] resultses;
     private GirlAdapter adapter;
+
     private List<Results> girlList=new ArrayList<>();
     private final String TAG = "MainActivity";//log
     static int page = 1;//page静态才会累积
